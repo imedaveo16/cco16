@@ -94,6 +94,10 @@ Thumbs.db
 temp/
 tmp/
 *.tmp
+upload/
+*.png
+*.jpg
+*.jpeg
 
 # Dev logs
 dev.log
