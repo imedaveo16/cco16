@@ -38,7 +38,7 @@ export default function AdministratorDashboard() {
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-destructive/20 border border-destructive/50 flex items-center justify-center">
-                <img src="/civil-protection-logo.png" alt="شعار الحماية المدنية" className="w-6 h-6" />
+                <img src="/new-logo.png" alt="شعار الحماية المدنية" className="w-6 h-6" />
               </div>
               <div className="text-right border-r border-foreground/20 pr-4">
                 <p className="text-sm font-bold text-foreground tracking-wide">مسؤول النظام</p>

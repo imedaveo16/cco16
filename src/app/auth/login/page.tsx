@@ -151,9 +151,9 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-md p-8">
         {/* شعار وعنوان */}
         <div className="text-center mb-8">
-          {/* شعار الحماية المدنية */}
+          {/* شعار الحماية المدنية - الشعار الجديد */}
           <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary/20 border-2 border-primary mb-4 glow-effect">
-            <img src="/civil-protection-logo.png" alt="شعار الحماية المدنية" className="w-16 h-16" />
+            <img src="/new-logo.png" alt="شعار الحماية المدنية" className="w-16 h-16 object-contain" />
           </div>
 
           <h1 className="text-3xl font-bold text-foreground mb-2 text-nasa-header">
