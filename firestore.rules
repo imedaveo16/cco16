@@ -1,0 +1,129 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // وظائف مساعدة للتحقق من الأدوار
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'ADMINISTRATOR';
+    }
+
+    function isCommander() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'COMMANDER';
+    }
+
+    function isSupervisor() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'SUPERVISOR';
+    }
+
+    function isOperator() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'OPERATOR';
+    }
+
+    function hasRole(requiredRole) {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == requiredRole;
+    }
+
+    // قواعد المستخدمين
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isAdmin() && !isOwner(userId); // فقط Admins يمكنهم إنشاء/تعديل مستخدمين آخرين
+    }
+
+    // قواعد الحوادث
+    match /incidents/{incidentId} {
+      allow read: if request.auth != null; // جميع المستخدمين يمكنهم قراءة الحوادث
+      allow create: if isOperator() || isSupervisor() || isAdmin(); // Operators, Supervisors, Admins يمكنهم إنشاء حوادث
+      allow update: if isOwner(userId) || isSupervisor() || isAdmin(); // يمكن تعديل الحوادث المملوكة أو من قبل المستوفي
+      allow delete: if isAdmin() || isCommander(); // فقط Admins و Commanders يمكنهم حذف الحوادث
+    }
+
+    // قواعد الوحدات
+    match /units/{unitId} {
+      allow read: if request.auth != null; // جميع المستخدمين يمكنهم قراءة الوحدات
+      allow create: if isAdmin() || isCommander(); // فقط Admins و Commanders يمكنهم إنشاء وحدات
+      allow update: if isAdmin() || isCommander(); // فقط Admins و Commanders يمكنهم تعديل الوحدات
+      allow delete: if isAdmin(); // فقط Admins يمكنهم حذف الوحدات
+    }
+
+    // قواعد المراكز
+    match /centers/{centerId} {
+      allow read: if request.auth != null;
+      allow create: if isAdmin() || isCommander();
+      allow update: if isAdmin() || isCommander();
+      allow delete: if isAdmin();
+    }
+
+    // قواعد العمليات
+    match /operations/{operationId} {
+      allow read: if request.auth != null;
+      allow create: if isSupervisor() || isAdmin() || isCommander();
+      allow update: if isAdmin() || isCommander();
+      allow delete: if isAdmin();
+    }
+
+    // قواعد القرارات
+    match /decisions/{decisionId} {
+      allow read: if request.auth != null;
+      allow create: if isCommander() || isAdmin();
+      allow update: if isAdmin() || isCommander();
+      allow delete: if isAdmin();
+    }
+
+    // قواعد التنبيهات
+    match /alerts/{alertId} {
+      allow read: if request.auth != null;
+      allow create: if isAdmin() || isCommander();
+      allow update: if isAdmin() || isCommander();
+      allow delete: if isAdmin();
+    }
+
+    // قواعد سجلات المراجعة - للقراءة فقط
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow write: if false; // لا يمكن تعديل سجلات المراجعة مباشرة
+    }
+
+    // قواعد سجلات الاتصالات
+    match /communications/{commId} {
+      allow read: if request.auth != null;
+      allow create: if isOperator() || isAdmin();
+      allow update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // قواعد الإحصائيات
+    match /statistics/{statId} {
+      allow read: if request.auth != null;
+      allow write: if false; // الإحصائيات تُحسب ولا تُكتب مباشرة
+    }
+
+    // قواعد AI Advisory
+    match /ai_advisories/{advisoryId} {
+      allow read: if isCommander() || isAdmin();
+      allow create: if isCommander() || isAdmin(); // فقط Commanders و Admins يمكنهم طلب استشارات AI
+      allow write: if false; // الاستشارات تُكتب تلقائياً
+    }
+
+    // قواعد التقارير
+    match /reports/{reportId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isAdmin() || isCommander() || isSupervisor();
+      allow update: if false; // التقارير لا تُعدل
+      allow delete: if isAdmin();
+    }
+  }
+}

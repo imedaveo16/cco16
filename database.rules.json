@@ -1,0 +1,120 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    // وظائف مساعدة للتحقق من الأدوار
+    "is_owner": {
+      ".validate": "newData.val() === root.child('users').child(auth.uid).val()"
+    },
+    "is_admin": {
+      ".validate": "root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR'"
+    },
+    "is_commander": {
+      ".validate": "root.child('users').child(auth.uid).child('role').val() === 'COMMANDER'"
+    },
+    "is_supervisor": {
+      ".validate": "root.child('users').child(auth.uid).child('role').val() === 'SUPERVISOR'"
+    },
+    "is_operator": {
+      ".validate": "root.child('users').child(auth.uid).child('role').val() === 'OPERATOR'"
+    },
+
+    "users": {
+      ".read": "auth != null",
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR')",
+        ".write": "auth.uid === $uid || (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' && !data.child('role').exists())",
+        ".validate": "newData.hasChildren(['uid', 'email', 'name', 'role', 'centerId'])"
+      }
+    },
+
+    "incidents": {
+      ".read": "auth != null",
+      "$incidentId": {
+        ".read": "auth != null",
+        ".create": "newData.hasChildren(['id', 'incidentId', 'title', 'description', 'severity', 'status', 'latitude', 'longitude', 'address', 'source', 'createdAt'])",
+        ".update": "auth != null",
+        ".delete": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' || root.child('users').child(auth.uid).child('role').val() === 'COMMANDER')"
+      }
+    },
+
+    "units": {
+      ".read": "auth != null",
+      "$unitId": {
+        ".read": "auth != null",
+        ".create": "newData.hasChildren(['id', 'unitCode', 'unitType', 'callSign', 'status', 'capacity']) && (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' || root.child('users').child(auth.uid).child('role').val() === 'COMMANDER')",
+        ".update": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' || root.child('users').child(auth.uid).child('role').val() === 'COMMANDER')",
+        ".delete": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR'"
+      }
+    },
+
+    "centers": {
+      ".read": "auth != null",
+      "$centerId": {
+        ".read": "auth != null",
+        ".create": "newData.hasChildren(['id', 'name', 'region', 'address', 'centerCode']) && (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' || root.child('users').child(auth.uid).child('role').val() === 'COMMANDER')",
+        ".update": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' || root.child('users').child(auth.uid).child('role').val() === 'COMMANDER')",
+        ".delete": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR')"
+      }
+    },
+
+    "communications": {
+      ".read": "auth != null",
+      "$commId": {
+        ".read": "auth != null",
+        ".create": "newData.hasChildren(['id', 'channel', 'message', 'timestamp', 'sender'])",
+        ".update": "auth != null",
+        ".delete": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR'"
+      }
+    },
+
+    "decisions": {
+      ".read": "auth != null",
+      "$decisionId": {
+        ".read": "auth != null",
+        ".create": "newData.hasChildren(['id', 'incidentId', 'decisionType', 'description', 'reason', 'makerId', 'makerName', 'makerRole', 'timestamp', 'latitude', 'longitude']) && (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' || root.child('users').child(auth.uid).child('role').val() === 'COMMANDER')",
+        ".update": "false", // لا يمكن تعديل القرارات
+        ".delete": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR')"
+      }
+    },
+
+    "audit_logs": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR'",
+      "$logId": {
+        ".read": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR'",
+        ".write": "false" // لا يمكن تعديل سجلات المراجعة مباشرة
+      }
+    },
+
+    "alerts": {
+      ".read": "auth != null",
+      "$alertId": {
+        ".read": "auth != null",
+        ".create": "newData.hasChildren(['id', 'type', 'title', 'description', 'severity', 'isRead', 'createdAt']) && (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' || root.child('users').child(auth.uid).child('role').val() === 'COMMANDER')",
+        ".update": "auth != null", // يمكن تعليم التنبيهات كمقروءة
+        ".delete": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR')"
+      }
+    },
+
+    "statistics": {
+      ".read": "auth != null",
+      ".write": "false" // الإحصائيات تُحسب ولا تُكتب مباشرة
+    },
+
+    "shadow_mode_users": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('isShadowMode').val() === true",
+      ".write": "false"
+    },
+
+    "drill_mode": {
+      ".read": "auth != null",
+      "$drillId": {
+        ".read": "auth != null",
+        ".create": "newData.hasChildren(['id', 'scenarioId', 'startTime', 'endTime', 'status', 'participants', 'results']) && (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' || root.child('users').child(auth.uid).child('role').val() === 'COMMANDER')",
+        ".update": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR' || root.child('users').child(auth.uid).child('role').val() === 'COMMANDER')",
+        ".delete": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'ADMINISTRATOR')"
+      }
+    }
+  }
+}

@@ -1,37 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cairo, Rajdhani } from "next/font/google";
 import "./globals.css";
+import "../styles/nasa-theme.css";
 import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic", "latin"],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const rajdhani = Rajdhani({
+  variable: "--font-rajdhani",
   subsets: ["latin"],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
-  title: "Z.ai Code Scaffold - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Z.ai. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Z.ai", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Z.ai Team" }],
-  icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
-  },
+  title: "منصة القيادة والتحكم v1.1 - الحماية المدنية الجزائرية",
+  description: "نظام قيادة متطور بأسلوب NASA للمديرية العامة للحماية المدنية الجزائرية - تكامل Firebase الحقيقي",
+  keywords: ["الحماية المدنية", "الجزائر", "نظام القيادة", "NASA Style", "Firebase", "الطوارئ", "الإنقاذ"],
+  authors: [{ name: "المديرية العامة للحماية المدنية الجزائرية" }],
   openGraph: {
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
-    url: "https://chat.z.ai",
-    siteName: "Z.ai",
+    title: "منصة القيادة والتحكم v1.1",
+    description: "نظام قيادة متطور بأسلوب NASA - تكامل Firebase الحقيقي",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
+    locale: 'ar_DZ',
   },
 };
 
@@ -41,9 +37,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ar" dir="rtl" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${cairo.variable} ${rajdhani.variable} font-cairo antialiased bg-background text-foreground`}
       >
         {children}
         <Toaster />

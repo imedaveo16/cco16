@@ -1,0 +1,232 @@
+/**
+ * DGPC Mission Control - NASA Design System v1.1
+ * نظام تصميم مستوحى من NASA Mission Control
+ */
+
+:root {
+  /* الألوان الأساسية - NASA Style */
+  --nasa-blue: #0D47A1;
+  --nasa-red: #B71C1C;
+  --nasa-dark-gray: #121212;
+  --nasa-medium-gray: #1E1E1E;
+  --nasa-light-gray: #2D2D2D;
+  --nasa-green: #00FF00;
+  --nasa-yellow: #FFD700;
+  --nasa-orange: #FF6B00;
+  --nasa-white: #FFFFFF;
+
+  /* متغيرات الألوان */
+  --background: var(--nasa-dark-gray);
+  --foreground: var(--nasa-white);
+  --card: var(--nasa-medium-gray);
+  --card-foreground: var(--nasa-white);
+  --border: var(--nasa-light-gray);
+  --primary: var(--nasa-blue);
+  --primary-foreground: var(--nasa-white);
+  --destructive: var(--nasa-red);
+  --destructive-foreground: var(--nasa-white);
+  --accent: var(--nasa-blue);
+  --accent-foreground: var(--nasa-white);
+  --muted: var(--nasa-light-gray);
+  --muted-foreground: var(--nasa-white);
+  --ring: var(--nasa-blue);
+
+  /* حالات الوحدات */
+  --status-active: var(--nasa-green);
+  --status-engaged: var(--nasa-red);
+  --status-maintenance: var(--nasa-yellow);
+  --status-offline: #6B6B6B;
+
+  /* مستويات الخطورة */
+  --severity-low: var(--nasa-green);
+  --severity-medium: var(--nasa-yellow);
+  --severity-high: var(--nasa-orange);
+  --severity-critical: var(--nasa-red);
+  --severity-extreme: #FF0000;
+
+  /* مستويات DEFCON */
+  --defcon-1: #FF0000;
+  --defcon-2: #FF4500;
+  --defcon-3: #FFA500;
+  --defcon-4: var(--nasa-green);
+  --defcon-5: #00FF00;
+
+  /* التباعد والأبعاد */
+  --radius: 0.5rem;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(13, 71, 161, 0.5);
+  --shadow-alert: 0 0 30px rgba(183, 28, 28, 0.6);
+
+  /* الطباعة */
+  --font-mono: 'Courier New', 'Courier', monospace;
+  --font-sans: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* تأثيرات خاصة بأسلوب NASA */
+@keyframes nasa-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: var(--shadow-alert);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@keyframes nasa-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.3; }
+}
+
+@keyframes nasa-scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes nasa-flash {
+  0%, 100% { background-color: var(--nasa-red); }
+  50% { background-color: #FF0000; }
+}
+
+/* فئات التأثيرات */
+.nasa-pulse {
+  animation: nasa-pulse 2s infinite;
+}
+
+.nasa-blink {
+  animation: nasa-blink 1s infinite;
+}
+
+.nasa-scan-line {
+  animation: nasa-scan 3s linear infinite;
+}
+
+.nasa-alert-flash {
+  animation: nasa-flash 0.5s infinite;
+}
+
+/* تأثير التوهج للعناصر الحرجة */
+.glow-effect {
+  box-shadow: var(--shadow-glow);
+}
+
+.glow-alert {
+  box-shadow: var(--shadow-alert);
+}
+
+/* تأثير زجاجي */
+.glass-effect {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* تأثير حدود مضيئة */
+.glow-border {
+  border: 1px solid var(--nasa-blue);
+  box-shadow: 0 0 10px rgba(13, 71, 161, 0.5);
+}
+
+/* تأثير الحواف المسننة */
+.tech-corners {
+  position: relative;
+}
+
+.tech-corners::before,
+.tech-corners::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--nasa-blue);
+  border-style: solid;
+}
+
+.tech-corners::before {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+}
+
+.tech-corners::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 2px 2px 0;
+}
+
+/* تحسينات للطباعة */
+* {
+  font-family: var(--font-sans);
+}
+
+.mono-font {
+  font-family: var(--font-mono);
+}
+
+/* تأثيرات التحميل */
+.loading-spinner {
+  border: 3px solid var(--nasa-light-gray);
+  border-top: 3px solid var(--nasa-blue);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* تأثير الأزرار */
+.nasa-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.nasa-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.nasa-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* تأثير التوهج للنصوص */
+.text-glow {
+  text-shadow: 0 0 10px rgba(13, 71, 161, 0.8);
+}
+
+.text-glow-red {
+  text-shadow: 0 0 10px rgba(183, 28, 28, 0.8);
+}
+
+/* أنماط الحالة */
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.status-indicator::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  animation: nasa-pulse 1.5s infinite;
+}

@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// DGPC Sovereign Mission-Control Platform Database Schema
+// Directorate General of Civil Protection Algeria
 
 generator client {
   provider = "prisma-client-js"
@@ -13,20 +10,279 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User Roles: Operator, Supervisor, Commander, Administrator
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String    @id @default(cuid())
+  email          String    @unique
+  name           String
+  role           UserRole  @default(OPERATOR)
+  centerId       String?
+  isShadowMode   Boolean   @default(false)  // For commanders to observe without alerting
+  isActive       Boolean   @default(true)
+  lastSeenAt     DateTime?
+  sessionToken   String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  decisions      Decision[]
+  assignedUnits  Unit[]    @relation("UnitOperator")
+  audits         AuditLog[]
+  center         ProtectionCenter? @relation(fields: [centerId], references: [id])
 }
 
-model Post {
-  id        String   @id @default(cuid())
+enum UserRole {
+  OPERATOR
+  SUPERVISOR
+  COMMANDER
+  ADMINISTRATOR
+}
+
+// Protection Centers
+model ProtectionCenter {
+  id        String    @id @default(cuid())
+  name      String
+  code      String    @unique  // e.g., "ALG-CENTER-01"
+  location  String    // Coordinates or address
+  region    String
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  incidents     Incident[]
+  units         Unit[]
+  operationFrom Operation[] @relation("OperationFromCenter")
+  operationTo   Operation[] @relation("OperationToCenter")
+  users         User[]
+}
+
+// Incident Severity Levels
+enum IncidentSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+  EXTREME
+}
+
+// Incident Status
+enum IncidentStatus {
+  OPEN
+  ACTIVE
+  MONITORING
+  CLOSED
+  ARCHIVED
+}
+
+// Incidents from Citizen/Driver Apps
+model Incident {
+  id          String           @id @default(cuid())
+  incidentId  String           @unique  // Auto-generated incident code
+  title       String
+  description String
+  severity    IncidentSeverity
+  status      IncidentStatus   @default(OPEN)
+  latitude    Float
+  longitude   Float
+  address     String
+  source      String           // CITIZEN_APP, DRIVER_APP, MANUAL
+  reportById  String?
+  centerId    String
+  operationId String?
+  isDrill     Boolean          @default(false) // For simulation mode
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  resolvedAt  DateTime?
+
+  center      ProtectionCenter @relation(fields: [centerId], references: [id])
+  operation   Operation?       @relation(fields: [operationId], references: [id])
+  units       UnitIncident[]
+  decision    Decision[]
+  updates     IncidentUpdate[]
+}
+
+// Unit Status
+enum UnitStatus {
+  ON_DUTY
+  ENGAGED
+  MAINTENANCE
+  OFFLINE
+}
+
+// Response Units (Fire trucks, ambulances, etc.)
+model Unit {
+  id          String      @id @default(cuid())
+  unitCode    String      @unique  // e.g., "AMBU-001"
+  unitType    String      // AMBULANCE, FIRE_TRUCK, RESCUE_TEAM, etc.
+  callSign    String
+  status      UnitStatus  @default(OFFLINE)
+  latitude    Float?
+  longitude   Float?
+  capacity    Int         // Number of personnel
+  operatorId  String?
+  centerId    String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  operator    User?       @relation("UnitOperator", fields: [operatorId], references: [id])
+  center      ProtectionCenter @relation(fields: [centerId], references: [id])
+  incidents   UnitIncident[]
+  telemetry   UnitTelemetry[]
+}
+
+// Unit-Incident Assignment (many-to-many)
+model UnitIncident {
+  id          String   @id @default(cuid())
+  unitId      String
+  incidentId  String
+  assignedAt  DateTime @default(now())
+  arrivedAt   DateTime?
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+
+  unit     Unit     @relation(fields: [unitId], references: [id])
+  incident Incident @relation(fields: [incidentId], references: [id])
+
+  @@unique([unitId, incidentId])
+}
+
+// Unit Telemetry for tracking
+model UnitTelemetry {
+  id          String   @id @default(cuid())
+  unitId      String
+  latitude    Float
+  longitude   Float
+  speed       Float?
+  heading     Float?
+  status      String?
+  recordedAt  DateTime @default(now())
+  createdAt   DateTime @default(now())
+
+  unit Unit @relation(fields: [unitId], references: [id])
+}
+
+// Operation Lifecycle
+enum OperationStatus {
+  OPEN
+  ACTIVE
+  CLOSED
+  ARCHIVED
+}
+
+// Operations (missions)
+model Operation {
+  id             String           @id @default(cuid())
+  operationCode  String           @unique  // Auto-generated code
+  title          String
+  description    String
+  status         OperationStatus  @default(OPEN)
+  fromCenterId   String
+  toCenterId     String?
+  startedAt      DateTime?
+  closedAt       DateTime?
+  isDrill        Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  fromCenter ProtectionCenter @relation("OperationFromCenter", fields: [fromCenterId], references: [id])
+  toCenter   ProtectionCenter? @relation("OperationToCenter", fields: [toCenterId], references: [id])
+  incidents  Incident[]
+  transfers  OperationTransfer[]
+}
+
+// Operation Transfer Records (when operations transfer between centers)
+model OperationTransfer {
+  id           String   @id @default(cuid())
+  operationId  String
+  fromCenterId String
+  toCenterId   String
+  reason       String
+  transferredAt DateTime @default(now())
+  transferredBy String
+
+  operation Operation @relation(fields: [operationId], references: [id])
+}
+
+// DEFCON Levels
+enum DefconLevel {
+  DEFCON_5
+  DEFCON_4
+  DEFCON_3
+  DEFCON_2
+  DEFCON_1
+}
+
+// Global Alerts
+model Alert {
+  id        String     @id @default(cuid())
   title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  message   String
+  severity  IncidentSeverity
+  defcon    DefconLevel @default(DEFCON_5)
+  isRedMode Boolean     @default(false)
+  isActive  Boolean     @default(true)
+  expiresAt DateTime?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+// Decision Timeline - who decided what and why
+model Decision {
+  id           String   @id @default(cuid())
+  incidentId   String?
+  userId       String
+  action       String
+  reason       String
+  context      String?
+  latitude     Float?
+  longitude    Float?
+  createdAt    DateTime @default(now())
+
+  incident Incident? @relation(fields: [incidentId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+}
+
+// Incident Updates
+model IncidentUpdate {
+  id          String   @id @default(cuid())
+  incidentId  String
+  updateType  String   // STATUS_CHANGE, UNIT_DEPLOYED, NOTE, etc.
+  description String
+  updatedBy   String?
+  createdAt   DateTime @default(now())
+
+  incident Incident @relation(fields: [incidentId], references: [id])
+}
+
+// Communication Logs
+model CommunicationLog {
+  id          String   @id @default(cuid())
+  fromUserId  String?
+  toUserId    String?
+  channel     String   // RADIO, TEXT, etc.
+  message     String
+  isDrill     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+// Audit Log for Security (Zero-Trust)
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String
+  resource  String?
+  details   String?
+  ipAddress String?
+  userAgent String?
+  timestamp DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+}
+
+// Settings and Configuration
+model SystemSettings {
+  id                   String   @id @default(cuid())
+  key                  String   @unique
+  value                String
+  description          String?
+  updatedAt            DateTime @updatedAt
 }

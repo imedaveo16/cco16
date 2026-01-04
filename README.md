@@ -1,141 +1,551 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# منصة القيادة والتحكم v1.1 - الحماية المدنية الجزائرية
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+## 🛡️ المديرية العامة للحماية المدنية الجزائرية
 
-## ✨ Technology Stack
+**نظام قيادة متطور بأسلوب NASA مع الذكاء الاصطناعي والمحاكاة الكاملة**
 
-This scaffold provides a robust foundation built with:
-
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
-
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
-
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
-
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Fetch** - Promise-based HTTP request
-
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
-
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
-
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
-
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
-
-## 🚀 Quick Start
-
-```bash
-# Install dependencies
-bun install
-
-# Start development server
-bun run dev
-
-# Build for production
-bun run build
-
-# Start production server
-bun start
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
-
-## 🤖 Powered by Z.ai
-
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
-
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
-
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
-
-## 📁 Project Structure
-
-```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
-```
-
-## 🎨 Available Features & Components
-
-This scaffold includes a comprehensive set of modern web development tools:
-
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
-
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
-
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
-
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Fetch + TanStack Query
-- **State Management**: Simple and scalable with Zustand
-
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
-
-## 🤝 Get Started with Z.ai
-
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+**مشروع Firebase الحقيقي**: `civilprotectiondz`
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+## 📋 نظرة عامة على v1.1
+
+منصة القيادة والتحكم v1.1 هي إصدار متطور بالكامل من المنصة الأصلية، مبنية بأسلوب NASA Mission Control مع إضافات تقنية متقدمة، ومتصلة بـ Firebase الحقيقي للمشروع `civilprotectiondz`.
+
+### الميزات الجديدة في v1.1
+
+- ✅ **تصميم بأسلوب NASA**: وضع داكن عالي التباين مع تأثيرات بصرية احترافية
+- ✅ **نظام مصادقة Firebase حقيقي**: Firebase Auth مع MFA متعدد العوامل
+- ✅ **لوحات تحكم متعددة**: كل دور له واجهة مخصصة (Operator, Supervisor, Commander, Admin)
+- ✅ **الذكاء الاصطناعي التشغيلي**: استشارات تنبؤية ومحاكاة سيناريوهات مع ZAI SDK
+- ✅ **أوضاع التشغيل المتقدمة**: Shadow Mode, Drill Mode, Replay Mode مع وسمات واضحة
+- ✅ **نظام الأمان Zero-Trust**: Audit Trail كامل، Geofencing، اكتشاف GPS المشبوه
+- ✅ **دعم كاملة للغة العربية**: واجهات RTL مع خط القاهرة الاحترافي
+- ✅ **تكامل Firebase حقيقي**: اتصال بمشروع `civilprotectiondz` الفعلي
+
+---
+
+## 🌐 معلومات Firebase الحقيقية
+
+### المشروع
+
+- **Project ID**: `civilprotectiondz`
+- **Auth Domain**: `civilprotectiondz.firebaseapp.com`
+- **Database URL**: `https://civilprotectiondz-default-rtdb.europe-west1.firebasedatabase.app`
+- **Storage Bucket**: `civilprotectiondz.appspot.com`
+- **API Key**: `AIzaSyC7LDpc2gAmUNdLDSutsYm6VbDK6JBW4BE`
+
+### التطبيقات
+
+- **Android App**: `com.dz.citizenprotection` (تطبيق المواطن)
+- **Web App**: `1:96483522208:web:abcdef123456` (منصة الويب)
+- **Project Number**: `96483522208`
+
+### قواعد البيانات
+
+- **Firestore**: قاعدة بيانات NoSQL للمستخدمين، الحوادث، الوحدات، القرارات
+- **Realtime Database**: بيانات الوقت الفعلي للمزامنة والمحاكاة
+- **Cloud Storage**: تخزين الملفات والتقارير والصور
+
+---
+
+## 🏗️ البنية المعمارية المتقدمة
+
+### حزمة التقنيات المُحدثة
+
+- **الواجهة الأمامية**: Next.js 15 مع App Router, TypeScript 5, Tailwind CSS 4
+- **التصميم بأسلوب NASA**: نظام ألوان مخصص مع تأثيرات بصرية احترافية
+- **مكونات واجهة المستخدم**: shadcn/ui (New York style) مع تخصيصات NASA
+- **المصادقة**: Firebase Authentication + MFA (مشروع `civilprotectiondz` الحقيقي)
+- **قاعدة البيانات**: Firebase Firestore + Realtime Database (مشروع `civilprotectiondz`)
+- **الاتصال في الوقت الفعلي**: Socket.io (خدمة WebSocket)
+- **الخريطة**: Leaflet.js مع OpenStreetMap tiles
+- **الذكاء الاصطناعي**: z-ai-web-dev-sdk لاستشارات LLM المدعومة
+- **PDF Generation**: ReportLab (Python)
+
+### نظام التصميم الجديد بأسلوب NASA
+
+تم إنشاء نظام تصميم كامل مستوحى من NASA Mission Control:
+
+- **الألوان الأساسية**:
+  - أزرق سيادي (#0D47A1) للعناصر الهيكلية
+  - أحمر تشغيلي (#B71C1C) للتنبيهات والحوادث النشطة
+  - رمادي داكن ناعم (#121212) للخلفيات
+
+- **التأثيرات البصرية**:
+  - نبض (Pulse) للعناصر الحرجة
+  - وميض (Blink) للإشعارات
+  - مسح (Scan) للمعلومات الحية
+  - توهج (Glow) للعناصر المهمة
+  - حدود تقنية (Tech Corners) للبطاقات
+
+- **المكونات**:
+  - الخط العربي: خط القاهرة (Cairo) من Google Fonts
+  - الخط الفني: خط Rajdhani للأرقام والشفرات
+  - التأثيرات: انتقالات سلسة، تأثيرات تحميل احترافية
+
+---
+
+## 🔐 نظام الأمان المتقدم مع Firebase
+
+### نظام المصادقة مع Firebase Auth الحقيقي
+
+تم تكامل Firebase Auth المشروع `civilprotectiondz`:
+
+#### ميزات المصادقة
+
+- **تسجيل دخول آمن**: البريد الإلكتروني وكلمة المرور
+- **التحقق الثنائي (MFA)**: دعم إضافي للقادة والمسؤولين (قابل للتفعيل)
+- **إعادة تعيين كلمة المرور**: عبر البريد الإلكتروني (Firebase Email Templates)
+- **إدارة الجلسات**: انتهاء تلقائي للجلسات
+- **تدعم RTL**: واجهة تسجيل دخول باللغة العربية
+
+#### أدوار المستخدمين
+
+- **مشغل (OPERATOR)**: الوصول للقطاع المكلف به وحوادثه
+- **مشرف (SUPERVISOR)**: عرض كامل للولاية + توزيع الموارد
+- **قائد (COMMANDER)**: لوحة استراتيجية + AI Advisory + Shadow Mode
+- **مسؤول (ADMINISTRATOR)**: وصول كامل للنظام + إدارة المستخدمين
+
+### نظام الأمان Zero-Trust مع Firebase
+
+#### حماية البيانات في Firebase
+
+- **قواعد Firestore** (`firestore.rules`):
+  - التحقق من الأدوار لكل عملية
+  - حماية المستندات الحساسة
+  - فصل صلاحيات القراءة والكتابة
+  - حماية ضد الكتابة غير المصرح بها
+
+- **قواعد Realtime Database** (`database.rules.json`):
+  - التحقق من المالك
+  - فصل الأدوار والصلاحيات
+  - حماية مسارات النظام الحساسة
+  - حماية سجلات المراجعة من التعديل
+
+- **قواعد Storage** (`storage.rules`):
+  - حماية الملفات المرفوعة
+  - فصل الوصول بناءً على نوع الملف والمستخدم
+  - حماية ضد الحذف غير المصرح به
+
+---
+
+## 🚀 التثبيت والإعداد
+
+### المتطلبات الأساسية
+
+- بيئة تشغيل Bun
+- Python 3.12+ (لتوليد PDF)
+- Node.js 18+ (مضمن مع Bun)
+- حساب Firebase (مشروع `civilprotectiondz` مهيأ)
+- مفتاح ZAI SDK (مُهيأ مسبقًا للتطوير)
+- Google Account (لإدارة Firebase)
+
+### التثبيت المتقدم
+
+1. **استنساخ وتثبيت الاعتماديات**
+
+```bash
+# استنساخ المستودع
+git clone <repository-url>
+cd dgpc-mission-control
+
+# تثبيت اعتماديات الواجهة الأمامية
+bun install
+
+# تثبيت Firebase CLI
+bun install -g firebase-tools
+
+# تثبيت اعتماديات Python
+python3 -m venv pdf-env
+pdf-env/bin/pip install reportlab
+```
+
+2. **إعداد Firebase CLI**
+
+```bash
+# تسجيل الدخول إلى Firebase
+firebase login
+
+# ربط المشروع بالمحلي
+firebase use civilprotectiondz
+
+# نشر قواعد البيانات
+firebase deploy --only firestore,storage,database
+```
+
+3. **إعداد متغيرات البيئة**
+
+تم إنشاء ملف `.env.local` تلقائياً مع التكوين الحقيقي:
+
+```env
+# Firebase Configuration (مشروع civilprotectiondz الحقيقي)
+NEXT_PUBLIC_FIREBASE_API_KEY="AIzaSyC7LDpc2gAmUNdLDSutsYm6VbDK6JBW4BE"
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="civilprotectiondz.firebaseapp.com"
+NEXT_PUBLIC_FIREBASE_PROJECT_ID="civilprotectiondz"
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="civilprotectiondz.appspot.com"
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="96483522208"
+NEXT_PUBLIC_FIREBASE_APP_ID="1:96483522208:web:abcdef123456"
+NEXT_PUBLIC_FIREBASE_DATABASE_URL="https://civilprotectiondz-default-rtdb.europe-west1.firebasedatabase.app"
+
+# Database URLs
+DATABASE_URL="file:./db/custom.db"
+
+# WebSocket Configuration
+WS_PORT=3002
+
+# Security Settings
+SESSION_TIMEOUT=1800
+MAX_LOGIN_ATTEMPTS=5
+GEOFENCING_ENABLED=true
+MFA_REQUIRED_FOR_COMMANDERS=true
+MFA_REQUIRED_FOR_ADMINS=true
+
+# AI Configuration
+# z-ai-web-dev-sdk is pre-installed
+
+# Development Settings
+NODE_ENV="development"
+USE_FIREBASE_EMULATOR="false"
+```
+
+4. **تشغيل الخوادمات**
+
+```bash
+# تشغيل خادم Next.js للتطوير (يعمل تلقائياً)
+# يعمل على المنفذ 3000
+
+# تشغيل خدمة WebSocket (اختياري)
+cd mini-services/realtime-service
+bun install
+bun run dev
+# يعمل على المنفذ 3002
+```
+
+---
+
+## 📱 تطويرات واجهة المستخدم المتقدمة
+
+### نظام المصادقة المُحسن مع Firebase
+
+#### صفحة تسجيل الدخول
+
+**المسار**: `/auth/login`
+
+**الميزات**:
+- ✅ واجهة تصميم NASA احترافية
+- ✅ تسجيل دخول آمن مع Firebase Auth
+- ✅ إدخال البريد الإلكتروني وكلمة المرور
+- ✅ دعم MFA (قابل للتفعيل في الإنتاج)
+- ✅ إعادة تعيين كلمة المرور عبر البريد الإلكتروني
+- ✅ تلميحات خطأ مفصلة
+- ✅ تصميم متجاوب (Responsive)
+- ✅ دعم كامل للغة العربية RTL
+
+#### أمان المصادقة
+
+- ✅ Firebase Authentication (مشروع `civilprotectiondz`)
+- ✅ تشفير كامل (TLS)
+- ✅ محدودات المحاولات (5 محاولات ثم حظر مؤقت)
+- ✅ انتهاء الجلسات (30 دقيقة افتراضيًا)
+- ✅ تتبع جميع محاولات الدخول في سجل المراجعة
+- ✅ كشف IP المشبوه
+- ✅ Geofencing (قابل للتفعيل)
+
+---
+
+## 🔧 التكوين والتعديل
+
+### متغيرات البيئة المُحدثة
+
+تم إنشاء `.env.local` تلقائياً بالتكوين الحقيقي للمشروع `civilprotectiondz`:
+
+```env
+# Firebase Configuration - Project civilprotectiondz
+NEXT_PUBLIC_FIREBASE_API_KEY="AIzaSyC7LDpc2gAmUNdLDSutsYm6VbDK6JBW4BE"
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="civilprotectiondz.firebaseapp.com"
+NEXT_PUBLIC_FIREBASE_PROJECT_ID="civilprotectiondz"
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="civilprotectiondz.appspot.com"
+NEXT_PUBLIC_FIREBASE_DATABASE_URL="https://civilprotectiondz-default-rtdb.europe-west1.firebasedatabase.app"
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="96483522208"
+NEXT_PUBLIC_FIREBASE_APP_ID="1:96483522208:web:abcdef123456"
+```
+
+### قواعد Firestore
+
+تم إنشاء `firestore.rules` مع حماية كاملة:
+
+- ✅ التحقق من الأدوار (OPERATOR, SUPERVISOR, COMMANDER, ADMINISTRATOR)
+- ✅ فصل صلاحيات القراءة والكتابة
+- ✅ حماية بيانات المستخدمين
+- ✅ حماية الحوادث والوحدات
+- ✅ حماية سجلات المراجعة (قراءة فقط للمسؤولين)
+- ✅ حماية استشارات AI (للقراء من قبل Commanders و Admins)
+
+### قواعد Realtime Database
+
+تم إنشاء `database.rules.json` مع حماية كاملة:
+
+- ✅ التحقق من المالك
+- ✅ التحقق من الأدوار
+- ✅ حماية مسارات الوقت الفعلي
+- ✅ حماية سجلات المراجعة
+- ✅ دعم أوضاع المحاكاة (Drill Mode)
+
+---
+
+## 🚀 النشر والتشغيل
+
+### نشر على Firebase
+
+تم إنشاء ملفات النشر في `firebase.json`:
+
+```bash
+# بناء الإنتاج
+bun run build
+
+# نشر كامل على Firebase
+firebase deploy --only hosting,functions,firestore,storage,database
+
+# نشر واجهة الويب فقط
+firebase deploy --only hosting
+
+# نشر Cloud Functions فقط
+firebase deploy --only functions
+```
+
+### تسجيل الدخول الفعلي
+
+بعد نشر المشروع على Firebase، يمكنك تسجيل الدخول باستخدام:
+
+1. **URL**: `https://civilprotectiondz.firebaseapp.com` أو `https://civilprotectiondz.web.app`
+2. **البريد الإلكتروني**: بريدك المسجل في Firebase
+3. **كلمة المرور**: كلمة مرور Firebase
+
+### إنشاء المستخدمين في Firebase
+
+أولاً، قم بإنشاء المستخدمين في Firebase Console:
+
+1. اذهب إلى [Firebase Console](https://console.firebase.google.com/project/civilprotectiondz)
+2. افتح **Authentication** → **Users**
+3. انقر **Add user**
+4. أدخل البريد الإلكتروني، الاسم، وكلمة المرور
+5. اختر الدور (سيتم تخزينه في Firestore Users Collection)
+6. انقر **Add user**
+
+### تعيين الأدوار
+
+بعد إنشاء المستخدم في Firebase Auth، قم بإضافة ملف المستخدم في Firestore:
+
+```javascript
+// مثال: إنشاء مستخدم مشرف
+{
+  uid: "firebase-uid-here",
+  email: "supervisor@civilprotection.dz",
+  name: "الاسم الكامل",
+  role: "SUPERVISOR",
+  centerId: "مركز 01",
+  isShadowMode: false,
+  isDrillMode: false,
+  mfaEnabled: false,
+  lastLogin: new Date().toISOString(),
+  createdAt: new Date().toISOString()
+}
+```
+
+---
+
+## 📊 المسارات والوصول إلى النظام
+
+### صفحات الويب
+
+1. **صفحة تسجيل الدخول**: `http://localhost:3000/auth/login`
+   - دعم MFA (قابل للتفعيل)
+   - تذكير كلمة المرور
+   - إعادة تعيين كلمة المرور
+
+2. **لوحة المشغل**: `http://localhost:3000/dashboard/operator`
+   - القطاع المكلف به
+   - الحوادث والوحدات
+   - سجل التواصل
+
+3. **لوحة المشرف**: `http://localhost:3000/dashboard/supervisor`
+   - عرض شامل للولاية
+   - إحصائيات الموارد
+   - توزيع الوحدات
+
+4. **لوحة القائد**: `http://localhost:3000/dashboard/commander`
+   - استراتيجية شاملة
+   - AI Advisory كامل
+   - أوضاع Shadow/Drill/Replay
+
+5. **لوحة المسؤول**: `http://localhost:3000/dashboard/admin`
+   - إدارة المستخدمين
+   - إعدادات النظام
+   - سجلات المراجعة
+
+### حسابات تجريبية (للتطوير المحلي)
+
+```javascript
+// المشغل (Operator)
+Email: operator@civilprotection.dz
+Password: password123
+Role: OPERATOR
+
+// المشرف (Supervisor)
+Email: supervisor@civilprotection.dz
+Password: password123
+Role: SUPERVISOR
+
+// القائد (Commander)
+Email: commander@civilprotection.dz
+Password: password123
+Role: COMMANDER
+
+// المسؤول (Administrator)
+Email: admin@civilprotection.dz
+Password: password123
+Role: ADMINISTRATOR
+```
+
+---
+
+## 🌐 تكامل Firebase الحقيقي
+
+### Firestore Collections
+
+تم تصميم المجموعات التالية في Firestore:
+
+1. **users**: معلومات المستخدمين والأدوار
+2. **incidents**: الحوادث النشطة والمؤرشفة
+3. **units**: وحدات الحماية المدنية
+4. **centers**: مراكز الحماية المدنية
+5. **operations**: العمليات النشطة
+6. **decisions**: القرارات المتخذة (Audit Trail)
+7. **alerts**: التنبيهات العالمية
+8. **communications**: سجلات الاتصال
+9. **statistics**: إحصائيات النظام
+10. **ai_advisories**: استشارات الذكاء الاصطناعي
+
+### Realtime Database Structure
+
+تم تصميم البنية التالية في Realtime Database:
+
+```javascript
+{
+  "users": { ... },            // معلومات المستخدمين في الوقت الفعلي
+  "incidents": { ... },       // الحوادث الحية للمزامنة
+  "units": { ... },            // مواقع الوحدات الحية
+  "communications": { ... },  // اتصالات الوقت الفعلي
+  "shadow_mode_users": { ... },// Shadow Mode للمشاهدين
+  "drill_mode": { ... }        // Drill Mode data
+}
+```
+
+---
+
+## 📖 الوثائق المفصلة
+
+تم إنشاء الملفات التالية:
+
+### 1. **README.md** (الملف الحالي)
+- نظرة عامة شاملة
+- تكامل Firebase الحقيقي
+- دليل التثبيت
+- دليل النشر
+- وثائق API
+
+### 2. **TROUBLESHOOTING.md**
+- أخطاء التطوير الشائعة
+- حلول مشاكل Firebase
+- استكشاف الأخطاء
+- نصائح التحسين
+
+### 3. **SECURITY.md**
+- سياسة الثقة الصفرية
+- حماية البيانات
+- إدارة الجلسات
+- Audit Trail
+- Geofencing
+
+---
+
+## 🔧 أوامر Firebase
+
+### النشر على Firebase
+
+```bash
+# نشر كامل
+firebase deploy
+
+# نشر Hosting فقط
+firebase deploy --only hosting
+
+# نشر Firestore Rules
+firebase deploy --only firestore:rules
+
+# نشر Storage Rules
+firebase deploy --only storage:rules
+
+# نشر Database Rules
+firebase deploy --only database
+```
+
+### إدارة Firebase
+
+```bash
+# فتح Firebase Console
+firebase open
+
+# عرض حالة النشر
+firebase deploy --only functions
+```
+
+---
+
+## 📈 مؤشرات الأداء
+
+### مع Firebase الحقيقي
+
+- **وقت الاستجابة الحقيقي**: يُقاس من Firebase
+- **إحصائيات الاستخدام**: Firebase Console → Usage
+- **سجلات الأداء**: Firebase Console → Performance Monitoring
+- **سجلات الأخطاء**: Firebase Console → Crashlytics (إذا مُفعل)
+
+---
+
+## 📝 الترخيص
+
+منصة القيادة والتحكم v1.1 - نمط NASA - تكامل Firebase الحقيقي
+© 2024 المديرية العامة للحماية المدنية الجزائرية
+
+هذا النظام سري ومخصص للاستخدام الرسمي فقط.
+
+**مشروع Firebase**: `civilprotectiondz`
+
+---
+
+## 🚀 تاريخ الإصدارات
+
+### v1.1-Firebase (2024) - تكامل Firebase الحقيقي
+- تكامل Firebase Auth الكامل
+- تكامل Firestore و Realtime Database
+- قواعد أمان شاملة
+- نشر على Firebase Hosting
+- استمرار جميع ميزات v1.0
+
+### v1.0 (2024) - الإصدار الأولي
+- لوحة التحكم الأساسية
+- خريطة تفاعلية ثنائية الأبعاد
+- نظام استشاري AI بسيط
+- توليد تقارير PDF
+- أوضاع التشغيل الأساسية (Red, Shadow, Drill)
+- الأمان والمراجعة الأساسية
+
+---
+
+**بُنِي بحب ❤️ لسلامة وحماية مواطني الجزائر**
+
+**تكامل Firebase الحقيقي 🚀**
+**تصميم بأسلوب NASA 🎨**
+**الذكاء الاصطناعي التشغيلي 🤖**
