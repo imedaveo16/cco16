@@ -5,6 +5,7 @@ import { Shield, Lock, AlertTriangle, User, Mail, Eye, EyeOff, Activity, ArrowRi
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Badge } from '@/components/ui/badge'
 import { authService } from '@/lib/auth/auth-service'
 import type { LoginCredentials, MFACredentials } from '@/lib/auth/auth-service'
 import { onAuthStateChanged, type User } from 'firebase/auth'
@@ -150,9 +151,11 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-md p-8">
         {/* شعار وعنوان */}
         <div className="text-center mb-8">
+          {/* شعار الحماية المدنية */}
           <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary/20 border-2 border-primary mb-4 glow-effect">
-            <Shield className="w-12 h-12 text-primary" />
+            <img src="/civil-protection-logo.png" alt="شعار الحماية المدنية" className="w-16 h-16" />
           </div>
+
           <h1 className="text-3xl font-bold text-foreground mb-2 text-nasa-header">
             منصة القيادة والتحكم
           </h1>
